@@ -17,7 +17,7 @@
  * Define Global Variables
  * 
 */
-const list = document.getElementById("navbar__list");
+const navList = document.getElementById("navbar__list");
 const sections = document.getElementsByTagName("section");
 
 /**
@@ -47,7 +47,7 @@ function genNav(){
         newLi.setAttribute('class','menu__link') ;
         fragment.appendChild(newLi);
     }
-    list.appendChild(fragment);
+    navList.appendChild(fragment);
 }
 
 // Add class 'active' to section when near top of viewport
@@ -83,7 +83,7 @@ function scrollToElement(event){
 document.addEventListener('DOMContentLoaded',genNav);
 
 // Scroll to section on link click
-list.addEventListener('click', scrollToElement);
+navList.addEventListener('click', scrollToElement);
 
 // Set sections as active
 
