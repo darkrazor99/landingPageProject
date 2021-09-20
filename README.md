@@ -2,12 +2,33 @@
 
 ## Table of Contents
 
+* [Summary](#Summary)
 * [Instructions](#instructions)
+* [MainFeatures](#Main Features)
+* [ResoursesUsed](#Resourses Used)
+
+
+## Summary
+
+This project is a landing page with a dynamically generated navigation menue, the navigation menue
+has link that when clicked scrolls to the corrosonding section.
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+In order to run this project you can simply download the zip file and drag the index.html into your browser.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Main Features
 
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+1. create navigation menu dynamiclly 
+2. scroll to corrosbonding section when a menu link is clicked
+3. when scrolling the section being viewed is in an active state
+
+## Resourses Used
+
+I used the following documentations and resourses to help me 
+
+* https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+* https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+* video made by Kevin Powell, great explination of IntersectionObserverApi 
+    * https://www.youtube.com/watch?v=T8EYosX4NOo
+* https://www.w3schools.com/jsref/met_element_scrollintoview.asp
