@@ -20,6 +20,31 @@
 const navList = document.getElementById("navbar__list");
 const sections = document.getElementsByTagName("section");
 
+// options for observer depending on screen width and height
+let options;
+if (window.innerWidth > 700) {
+    options = {
+        rootMargin:'-150px',
+        threshold : 0.35
+    }
+} else if (window.innerWidth === 540 && window.innerHeight === 720)  { 
+    options = {
+        rootMargin: '0px',
+        threshold : 1
+    }
+} else if (window.innerWidth > 540) {
+    options = {
+        rootMargin: '-100px',
+        threshold : 0.40
+    
+    }
+} else {
+    options = {
+        rootMargin: '-50px',
+        threshold : 0.30
+    }
+}
+
 /**
  * End Global Variables
  * Start Helper Functions
@@ -34,32 +59,55 @@ const sections = document.getElementsByTagName("section");
  * 
 */
 
-// build the nav (done)
+/**
+* @description Generates the navigation menu for a landing page
+*/
 function genNav(){
     
     const fragment = document.createDocumentFragment();
-    // select all the sections
-    // const sections = fragment.querySelectorAll("section");
-    // select the navigation ul
-    for (const section of sections) {
+    for(let i = 0; i < sections.length; i++){
         const newLi = document.createElement('li');
-        newLi.innerHTML = section.getAttribute('data-nav');
+        newLi.innerHTML = sections[i].getAttribute('data-nav');
         newLi.setAttribute('class','menu__link') ;
+        if(i===0){
+            newLi.classList.toggle('active-link');
+        }
         fragment.appendChild(newLi);
     }
     navList.appendChild(fragment);
 }
 
-// Add class 'active' to section when near top of viewport
-// needs work
-function setActive(element){
+/**
+* @description Adds or removes an active class from an element
+* @param {list of IntersectionObserverEntry} entries
+* @param {IntersectionObserver} observer
+*/
+function setActive(entries, observer){
+        
+    for (const entry of entries) {
+
+        if (entry.isIntersecting){
+            // remove the active status from the previously active element and link
+            document.querySelector('.your-active-class').classList.toggle('your-active-class');
+            document.querySelector('.active-link').classList.toggle('active-link');
+            // make the current element and link active
+            entry.target.classList.toggle('your-active-class');
+            const lis = document.querySelectorAll('li');
+            for (const li of lis) {
+                if(entry.target.getAttribute('data-nav') === li.innerHTML) {
+                    li.classList.toggle('active-link');
+                    break;
+                }
+            }
+        }
+    }
     
-    // remove the active status from the previously active element
-    document.querySelector('your-active-class').classList.toggle('your-active-class');
-    // make the current element active
-    element.classList.toggle('your-active-class');
 }
-// Scroll to anchor ID using scrollTO event (done)
+
+/**
+* @description Scrolls to an element when it's link which is in the navMenu is clicked
+* @param {object} event
+*/
 function scrollToElement(event){
     
     const sectionToScrollTo = event.target.innerHTML;
@@ -67,7 +115,7 @@ function scrollToElement(event){
     for (const section of sections) {
         
         if( section.getAttribute('data-nav') === sectionToScrollTo) {
-            section.scrollIntoView();
+            section.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
             break;
         }
     }
@@ -86,5 +134,11 @@ document.addEventListener('DOMContentLoaded',genNav);
 navList.addEventListener('click', scrollToElement);
 
 // Set sections as active
+// I used observer
+let observer = new IntersectionObserver(setActive, options);
 
+// now to make the observer observe our sections
+for (const section of sections) {
+    observer.observe(section);
+}
 
