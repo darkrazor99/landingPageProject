@@ -11,7 +11,7 @@
 ## Summary
 
 This project is a landing page with a dynamically generated navigation menue, the navigation menue
-has link that when clicked scrolls to the corrosonding section.
+has links that when clicked scrolls to the corrosonding section.
 
 ## Instructions
 
