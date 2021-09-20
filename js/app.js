@@ -121,6 +121,18 @@ function scrollToElement(event){
     }
 }
 
+function hideNav(){
+        document.querySelector('.page__header').style.opacity  = 0;
+        setTimeout(hideNav,6000);
+}
+
+function showNav(){
+    document.querySelector('.page__header').style.opacity = 1;
+}
+// onscroll="disableScrolling()" 
+//         onmousewheel="enableScrolling()" 
+//          onclick="enableScrolling()"
+//           onmousemove="enableScrolling()"
 /**
  * End Main Functions
  * Begin Events
@@ -141,4 +153,5 @@ let observer = new IntersectionObserver(setActive, options);
 for (const section of sections) {
     observer.observe(section);
 }
-
+ 
+hideNav();
