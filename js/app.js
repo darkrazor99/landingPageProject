@@ -22,26 +22,21 @@ const sections = document.getElementsByTagName("section");
 
 // options for observer depending on screen width and height
 let options;
-if (window.innerWidth > 700) {
+if (window.innerWidth === 540 && window.innerHeight === 720){
     options = {
+        threshold : 0.70
+    }
+} else if (window.innerWidth < 600)  { 
+    options = {
+       // rootMargin: '-100px',
+        threshold : 0.30
+
+    }
+} else if (window.innerWidth > 700) {
+    options = {
+
         rootMargin:'-150px',
         threshold : 0.35
-    }
-} else if (window.innerWidth === 540 && window.innerHeight === 720)  { 
-    options = {
-        rootMargin: '0px',
-        threshold : 1
-    }
-} else if (window.innerWidth > 540) {
-    options = {
-        rootMargin: '-100px',
-        threshold : 0.40
-    
-    }
-} else {
-    options = {
-        rootMargin: '-50px',
-        threshold : 0.30
     }
 }
 
@@ -152,4 +147,7 @@ for (const section of sections) {
     observer.observe(section);
 }
  
+window.addEventListener('resize', function(){
+    console.log("test");
+});
 hideNav();
