@@ -26,19 +26,13 @@ if (window.innerWidth === 540 && window.innerHeight === 720){
     options = {
         threshold : 0.70
     }
-} else if (window.innerWidth < 600)  { 
+} else { 
     options = {
        // rootMargin: '-100px',
         threshold : 0.30
 
     }
-} else if (window.innerWidth > 700) {
-    options = {
-
-        rootMargin:'-150px',
-        threshold : 0.35
-    }
-}
+} 
 
 /**
  * End Global Variables
@@ -147,7 +141,4 @@ for (const section of sections) {
     observer.observe(section);
 }
  
-window.addEventListener('resize', function(){
-    console.log("test");
-});
 hideNav();
